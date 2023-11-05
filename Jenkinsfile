@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'mvn -B -DskipTests clean package'
-        node(label: 'mylinuxbuild')
+        node(label: 'mylinux')
       }
     }
 
@@ -12,7 +12,7 @@ pipeline {
       steps {
         sh 'mvn test'
         junit 'target/surefire-reports/*.xml'
-        node(label: 'mylinuxbuild')
+        node(label: 'mylinux')
       }
     }
 
@@ -20,7 +20,7 @@ pipeline {
       steps {
         sh './jenkins/scripts/deliver.sh'
         echo 'Hey Buddy, Build is Successful!!'
-        node(label: 'mylinuxbuild')
+        node(label: 'mylinux')
       }
     }
 
